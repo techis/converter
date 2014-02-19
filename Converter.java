@@ -1,8 +1,3 @@
-//Project: Converter.java
-//Author: techis
-//Date: May 31, 2013
-//Email: techis at gmx.com
-
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
