@@ -29,14 +29,14 @@ public class Converter {
 		int program =  Integer.parseInt((in.nextLine()));
 
 		switch(program){
-		case 1: decimalToBinary(args[0]); break;
-		case 2: binaryToDecimal(args[0]); break;
-		case 3: decimalToHex(args[0]); break;
-		case 4: hexToDecimal(args[0]); break;
-		case 5: hexToBinary(args[0]); break;
-		case 6: binaryToHex(args[0]); break;
-		case 7: textToBinary(args[0]); break;
-		case 99: System.exit(0);
+			case 1: decimalToBinary(args[0]); break;
+			case 2: binaryToDecimal(args[0]); break;
+			case 3: decimalToHex(args[0]); break;
+			case 4: hexToDecimal(args[0]); break;
+			case 5: hexToBinary(args[0]); break;
+			case 6: binaryToHex(args[0]); break;
+			case 7: textToBinary(args[0]); break;
+			case 99: System.exit(0);
 
 		}
 		convert(args[0]);
@@ -47,8 +47,8 @@ public class Converter {
 		Scanner input2 = new Scanner(System.in);
 		String binarynum = input2.next();
 		String safe = binarynum.substring(0,1) + binarynum.substring(1);
-		int decimal = Integer.parseInt(safe,2);   
-		input2.close();        
+		int decimal = Integer.parseInt(safe,2);
+		input2.close();
 		System.out.println("Your decimal value is: " + decimal);
 
 	}
@@ -93,7 +93,7 @@ public class Converter {
 		Scanner input2 = new Scanner(System.in);
 		String binarynum = input2.next();
 		String safe = binarynum.substring(0,1) + binarynum.substring(1);
-		int decimal = Integer.parseInt(safe,2);   
+		int decimal = Integer.parseInt(safe,2);
 		String hexstring = Integer.toHexString(decimal);
 		input2.close();
 	}
@@ -101,7 +101,7 @@ public class Converter {
 	public static void textToBinary(String output){
 		System.out.println("You have selected Text to Binary. Please enter a Text string to continue:");
 		Scanner input = new Scanner(System.in);
-		String text = input.nextLine(); 
+		String text = input.nextLine();
 		byte[] bytes = text.getBytes();
 		StringBuilder binary = new StringBuilder();
 		for (byte b : bytes)
