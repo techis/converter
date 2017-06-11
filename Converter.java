@@ -1,6 +1,3 @@
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.*;
 
 public class Converter {
@@ -8,100 +5,108 @@ public class Converter {
 	/**
 	 * @param args
 	 */
-	static int num = 0;
-	static Scanner in = new Scanner(System.in);
-
-
+	public static Scanner in = new Scanner(System.in);
+	
 	public static void main(String[] args) {
-		System.out.println("Please Select a Conversion");
-		System.out.println("0: Select new conversion");
-		System.out.println("1: Decimal to Binary");
-		System.out.println("2: Binary to Decimal");
-		System.out.println("3: Decimal to Hexidecimal");
-		System.out.println("4: Hexidecimal to Decimal");
-		System.out.println("5: Hexidecimal to Binary");
-		System.out.println("6: Binary to Hexidecimal");
-		System.out.println("7: Text to Binary");
-		System.out.println("99: Exit");
+		while(true){
+			//display menu
+			System.out.println("Please Select a Conversion");
+			System.out.println("1: Decimal to Binary");
+			System.out.println("2: Binary to Decimal");
+			System.out.println("3: Decimal to Hexidecimal");
+			System.out.println("4: Hexidecimal to Decimal");
+			System.out.println("5: Hexidecimal to Binary");
+			System.out.println("6: Binary to Hexidecimal");
+			System.out.println("7: Text to Binary");
+			System.out.println("99: Exit");
 
-
-
-		int program =  Integer.parseInt((in.nextLine()));
-
-		switch(program){
-			case 1: decimalToBinary(args[0]); break;
-			case 2: binaryToDecimal(args[0]); break;
-			case 3: decimalToHex(args[0]); break;
-			case 4: hexToDecimal(args[0]); break;
-			case 5: hexToBinary(args[0]); break;
-			case 6: binaryToHex(args[0]); break;
-			case 7: textToBinary(args[0]); break;
-			case 99: System.exit(0);
-
+			//take selection
+			String input = in.next();
+			if(isNumeric(input)){
+				int program = Integer.parseInt(input);
+				
+				//move to applicable function
+				switch(program){
+				case 1: decimalToBinary(); break;
+				case 2: binaryToDecimal(); break;
+				case 3: decimalToHex(); break;
+				case 4: hexToDecimal(); break;
+				case 5: hexToBinary(); break;
+				case 6: binaryToHex(); break;
+				case 7: textToBinary(); break;
+				case 99: System.out.println("Program Closing"); System.exit(0);
+				}
+			}
+			else{
+				System.out.println("Invalid Selection, Please select a valid option");
+			}
 		}
-		convert(args[0]);
+		
+	}
+	
+	//below from https://stackoverflow.com/questions/14206768/how-to-check-if-a-string-is-numeric
+	public static boolean isNumeric(String str)  
+	{  
+	  try  
+	  {  
+	    double d = Double.parseDouble(str);  
+	  }  
+	  catch(NumberFormatException nfe)  
+	  {  
+	    return false;  
+	  }  
+	  return true;  
 	}
 
-	public static void binaryToDecimal(String output){
+	public static void binaryToDecimal(){
 		System.out.println("You have selected Binary to Decimal. Please enter a Binary number to continue: ");
-		Scanner input2 = new Scanner(System.in);
-		String binarynum = input2.next();
+		String binarynum = in.next();
 		String safe = binarynum.substring(0,1) + binarynum.substring(1);
 		int decimal = Integer.parseInt(safe,2);
-		input2.close();
-		System.out.println("Your decimal value is: " + decimal);
-
+		System.out.println("Your decimal value is: " + decimal + "\n");
 	}
 
-	public static void decimalToBinary(String output){
+	public static void decimalToBinary(){
 		System.out.println("You have selected Decimal to Binary. Please enter a decimal number to continue: ");
-		int decimal =  Integer.parseInt((in.nextLine()));
+		int decimal =  Integer.parseInt((in.next()));
 		String binaryString = Integer.toBinaryString(decimal);
-		System.out.println("Your binary value is: " + binaryString);
+		System.out.println("Your binary value is: " + binaryString + "\n");
 	}
 
-
-	public static void decimalToHex(String output){
+	public static void decimalToHex(){
 		System.out.println("You have selected Decimal to Hex. Please enter a decimal number to continue: ");
-		Scanner input = new Scanner(System.in);
-		int decimal = input.nextInt();
-
+		int decimal = in.nextInt();
 		String hexstring = Integer.toHexString(decimal);
-		input.close();
+		System.out.println("Your hex value is: " + hexstring + "\n");
 	}
 
-	public static void hexToDecimal(String output){
+	public static void hexToDecimal(){
 		System.out.println("You have selected Hex to Decimal. Please enter a hex number to continue: ");
-		Scanner input = new Scanner(System.in);
-		String hexnumber = input.next();
+		String hexnumber = in.next();
 		String safe = hexnumber.substring(0,1) + hexnumber.substring(1);
-		int decimal = Integer.parseInt(safe,2);
-		input.close();
+		int decimal = Integer.parseInt(safe);
+		System.out.println("Your decimal value is:" + decimal + "\n");
 	}
 
-	public static void hexToBinary(String output){
+	public static void hexToBinary(){
 		System.out.println("You have selected Hex to Binary. Please enter a Hex number to continue: ");
-		Scanner input = new Scanner(System.in);
-		String hexnumber = input.next();
+		String hexnumber = in.next();
 		String safe = hexnumber.substring(0,1) + hexnumber.substring(1);
-		int decimal = Integer.parseInt(safe,2);
-		String binaryString = Integer.toBinaryString(decimal);
+		int decimal = Integer.parseInt(safe);
+		System.out.println("Your binary number is: " + Integer.toBinaryString(decimal) + "\n");
 	}
 
-	public static void binaryToHex(String output){
+	public static void binaryToHex(){
 		System.out.println("You have selected Binary to Hex. Please enter a Binary number to continue: ");
-		Scanner input2 = new Scanner(System.in);
-		String binarynum = input2.next();
+		String binarynum = in.next();
 		String safe = binarynum.substring(0,1) + binarynum.substring(1);
 		int decimal = Integer.parseInt(safe,2);
-		String hexstring = Integer.toHexString(decimal);
-		input2.close();
+		System.out.println("Your hex value is: " + Integer.toHexString(decimal) + "\n");
 	}
 
-	public static void textToBinary(String output){
+	public static void textToBinary(){
 		System.out.println("You have selected Text to Binary. Please enter a Text string to continue:");
-		Scanner input = new Scanner(System.in);
-		String text = input.nextLine();
+		String text = in.nextLine();
 		byte[] bytes = text.getBytes();
 		StringBuilder binary = new StringBuilder();
 		for (byte b : bytes)
@@ -113,35 +118,7 @@ public class Converter {
 				val <<= 1;
 			}
 		}
-		System.out.println("'" + text + "' to binary: " + binary);
-		input.close();
-	}
-
-	public static void convert(String output){
-		System.out.println("Please Select a Conversion");
-		System.out.println("0: Select new conversion");
-		System.out.println("1: Decimal to Binary");
-		System.out.println("2: Binary to Decimal");
-		System.out.println("3: Decimal to Hexidecimal");
-		System.out.println("4: Hexidecimal to Decimal");
-		System.out.println("5: Hexidecimal to Binary");
-		System.out.println("6: Binary to Hexidecimal");
-		System.out.println("7: Text to Binary");
-		System.out.println("99: Exit");
-		int program =  Integer.parseInt((in.nextLine()));
-
-		switch(program){
-		case 1: decimalToBinary(output); break;
-		case 2: binaryToDecimal(output); break;
-		case 3: decimalToHex(output); break;
-		case 4: hexToDecimal(output); break;
-		case 5: hexToBinary(output); break;
-		case 6: binaryToHex(output); break;
-		case 7: textToBinary(output); break;
-		case 99: System.exit(0);
-
-		}
-		convert(output);
+		System.out.println("'" + text + "' to binary: " + binary + "\n");
 	}
 
 }
